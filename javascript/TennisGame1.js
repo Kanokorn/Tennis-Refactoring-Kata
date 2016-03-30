@@ -22,6 +22,13 @@ TennisGame1.prototype.getScore = function() {
         2: "Thirty-All"
     };
 
+    var mapTempScore = {
+        0: "Love",
+        1: "Fifteen",
+        2: "Thirty",
+        3: "Forty"
+    };
+
     if (this.m_score1 === this.m_score2) {
         score = mapScore[this.m_score1] || "Deuce";
     } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
@@ -32,25 +39,14 @@ TennisGame1.prototype.getScore = function() {
         else score = "Win for player2";
     } else {
         for (var i = 1; i < 3; i++) {
-            if (i === 1) tempScore = this.m_score1;
-            else {
+            if (i === 1) {
+                tempScore = this.m_score1;
+            } else {
                 score += "-";
                 tempScore = this.m_score2;
             }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+            
+            score += mapTempScore[tempScore];
         }
     }
     return score;
