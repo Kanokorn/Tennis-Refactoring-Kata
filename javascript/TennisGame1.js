@@ -66,16 +66,14 @@ TennisGame1.prototype.getScore = function() {
 };
 
 function scoreLabel(score) {
-    switch (score) {
-        case 0:
-            return "Love";
-        case 1:
-            return "Fifteen";
-        case 2:
-            return "Thirty";
-        case 3:
-            return "Forty";
-    }
+    var mapScore = {
+        0: "Love",
+        1: "Fifteen",
+        2: "Thirty",
+        3: "Forty"
+    };
+
+    return mapScore[score];
 }
 
 if (typeof window === "undefined") {
