@@ -11,11 +11,15 @@ TennisGame1.prototype.wonPoint = function(playerName) {
 };
 
 TennisGame1.prototype.isDuece = function() {
-    return this.m_score1 === this.m_score2 && this.m_score1 > 2;
+    return this.isEqual() && this.m_score1 > 2;
 }
 
 TennisGame1.prototype.isAll = function() {
-    return this.m_score1 === this.m_score2 && this.m_score1 <= 2;
+    return this.isEqual() && this.m_score1 <= 2;
+}
+
+TennisGame1.prototype.isEqual = function() {
+    return this.m_score1 === this.m_score2;
 }
 
 TennisGame1.prototype.scoreGreater40 = function() {
