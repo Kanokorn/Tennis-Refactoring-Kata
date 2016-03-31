@@ -10,27 +10,26 @@ TennisGame1.prototype.wonPoint = function(playerName) {
         this.m_score1 += 1;
     else
         this.m_score2 += 1;
-
 };
 
 TennisGame1.prototype.getScore = function() {
     var score = "";
     var tempScore = 0;
-    var mapScore = {
-        0: "Love-All",
-        1: "Fifteen-All",
-        2: "Thirty-All"
-    };
-
-    var mapTempScore = {
-        0: "Love",
-        1: "Fifteen",
-        2: "Thirty",
-        3: "Forty"
-    };
-
     if (this.m_score1 === this.m_score2) {
-        score = mapScore[this.m_score1] || "Deuce";
+        switch (this.m_score1) {
+            case 0:
+                score = "Love-All";
+                break;
+            case 1:
+                score = "Fifteen-All";
+                break;
+            case 2:
+                score = "Thirty-All";
+                break;
+            default:
+                score = "Deuce";
+                break;
+        }
     } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
         var minusResult = this.m_score1 - this.m_score2;
         if (minusResult === 1) score = "Advantage player1";
@@ -39,18 +38,29 @@ TennisGame1.prototype.getScore = function() {
         else score = "Win for player2";
     } else {
         for (var i = 1; i < 3; i++) {
-            if (i === 1) {
-                tempScore = this.m_score1;
-            } else {
+            if (i === 1) tempScore = this.m_score1;
+            else {
                 score += "-";
                 tempScore = this.m_score2;
             }
-            
-            score += mapTempScore[tempScore];
+            score += scoreLabel(tempScore);
         }
     }
     return score;
 };
+
+function scoreLabel(score) {
+    switch (score) {
+        case 0:
+            return "Love";
+        case 1:
+            return "Fifteen";
+        case 2:
+            return "Thirty";
+        case 3:
+            return "Forty";
+    }
+}
 
 if (typeof window === "undefined") {
     module.exports = TennisGame1;
