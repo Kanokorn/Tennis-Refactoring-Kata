@@ -3,6 +3,13 @@ var TennisGame1 = function() {
     this.m_score2 = 0;
 };
 
+var scoreLabel = {
+    0: "Love",
+    1: "Fifteen",
+    2: "Thirty",
+    3: "Forty"
+};
+
 TennisGame1.prototype.wonPoint = function(playerName) {
     if (playerName === "player1")
         this.m_score1 += 1;
@@ -47,7 +54,7 @@ TennisGame1.prototype.getScore = function() {
     }
 
     if (this.isAll()) {
-        return scoreLabel(this.m_score1) + "-All";
+        return scoreLabel[this.m_score1] + "-All";
     }
 
     if (this.isPlayer1Adv()) {
@@ -66,19 +73,8 @@ TennisGame1.prototype.getScore = function() {
         return "Win for player2";
     }
 
-    return scoreLabel(this.m_score1) + "-" + scoreLabel(this.m_score2);
+    return scoreLabel[this.m_score1] + "-" + scoreLabel[this.m_score2];
 };
-
-function scoreLabel(score) {
-    var mapScore = {
-        0: "Love",
-        1: "Fifteen",
-        2: "Thirty",
-        3: "Forty"
-    };
-
-    return mapScore[score];
-}
 
 if (typeof window === "undefined") {
     module.exports = TennisGame1;
