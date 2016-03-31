@@ -33,7 +33,7 @@ TennisGame1.prototype.scoreGreater40 = function() {
     return (this.m_score1 >= 4 || this.m_score2 >= 4);
 }
 TennisGame1.prototype.isPlayer1Adv = function() {
-    return  this.scoreGreater40() && (this.m_score1 - this.m_score2) === 1;
+    return this.scoreGreater40() && (this.m_score1 - this.m_score2) === 1;
 }
 
 TennisGame1.prototype.isPlayer2Adv = function() {
